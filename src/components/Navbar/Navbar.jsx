@@ -30,10 +30,10 @@ const NavbarComponent = () => {
                 <button onClick={toggleLanguage} className="p-1 rounded">
                     <img src={locale === "ru" ? ruFlag : enFlag} alt="Language flag" className="size-10"/>
                 </button>
-                <Button
-                    className='bg-transparent text-orange-500 hover:bg-orange-600 hover:text-white transition cursor-pointer'>
-                    <IoIosSend className='size-8'/>
-                </Button>
+                {/*<Button*/}
+                {/*    className='bg-transparent text-orange-500 hover:bg-orange-600 hover:text-white transition cursor-pointer'>*/}
+                {/*    <IoIosSend className='size-8'/>*/}
+                {/*</Button>*/}
                 <NavbarToggle/>
             </div>
 
