@@ -3,6 +3,8 @@ import {Card} from "flowbite-react";
 import {StarIcon} from "flowbite-react/icons/star-icon";
 import {ChevronLeftIcon} from "flowbite-react/icons/chevron-left-icon";
 import {ChevronRightIcon} from "flowbite-react/icons/chevron-right-icon";
+import {FaUserCircle} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
 
 const reviews = [
     {
@@ -18,7 +20,7 @@ const reviews = [
         text: "Никогда не знала, что можно так легко избавиться от старого холодильника. Рекомендую всем!",
         author: "Ольга",
         role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+        avatar: "",
         rating: 4
     },
     {
@@ -42,7 +44,7 @@ const reviews = [
         text: "Отличная работа, избавился от старого телевизора без хлопот!",
         author: "Сергей",
         role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/men/5.jpg",
+        avatar: "",
         rating: 5
     },
     {
@@ -58,7 +60,7 @@ const reviews = [
         text: "Вывезли старую стиральную машину очень оперативно. Доволен сервисом!",
         author: "Алексей",
         role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/men/7.jpg",
+        avatar: "",
         rating: 4
     },
     {
@@ -66,7 +68,7 @@ const reviews = [
         text: "Супер услуга, избавилась от ненужной бытовой техники за 10 минут! Спасибо!",
         author: "Дарья",
         role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/women/8.jpg",
+        avatar: "",
         rating: 5
     },
     {
@@ -89,6 +91,7 @@ const reviews = [
 
 
 const Reviews = () => {
+    const {t} = useTranslation();
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
 
@@ -117,7 +120,7 @@ const Reviews = () => {
     };
 
     return (
-        <div className="w-full mx-auto py-10 text-center relative overflow-hidden">
+        <div className="w-full mx-auto py-20 text-center relative overflow-hidden">
             <h2 className="w-full p-5 mx-auto text-3xl font-bold mb-6 flex justify-center gap-12 items-center">
                 <button onClick={prevSlide} className="p-3 bg-blue-600 rounded-full hover:bg-blue-800 transition">
                     <ChevronLeftIcon className="w-6 h-6 text-white"/>
@@ -131,10 +134,19 @@ const Reviews = () => {
                 {reviews.map((review, index) => (
                     <div key={review.id}
                          className={`flex-shrink-0 w-80 transition-opacity duration-300 ${index === currentIndex ? '' : 'opacity-90'}`}>
-                        <Card className="p-6 shadow-lg rounded-xl h-full flex flex-col">
+                        <Card className="p-6 shadow-lg rounded-xl h-full flex flex-col !bg-gray-900">
                             <div className="grid grid-rows-[auto_auto_1fr_auto] gap-3">
                                 <div className="flex items-center space-x-4">
-                                    <img src={review.avatar} alt={review.author} className="w-14 h-14 rounded-full"/>
+                                    {review.avatar ? (
+                                        <img
+                                            src={review.avatar}
+                                            alt={review.author}
+                                            className="w-14 h-14 rounded-full"
+                                            onError={(e) => (e.target.style.display = "none")}
+                                        />
+                                    ) : (
+                                        <FaUserCircle className="w-14 h-14 text-gray-400"/>
+                                    )}
                                     <div>
                                         <h3 className="text-lg text-white text-left font-semibold">
                                             {review.author}
@@ -144,6 +156,7 @@ const Reviews = () => {
                                         </p>
                                     </div>
                                 </div>
+
                                 <p className="text-white overflow-hidden text-ellipsis flex-grow text-justify">
                                     {review.text}
                                 </p>
