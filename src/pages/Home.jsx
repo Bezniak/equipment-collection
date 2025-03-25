@@ -4,6 +4,7 @@ import Advantages from "../components/Advantages/Advantages.jsx";
 import Process from "../components/Process/Process.jsx";
 import Service from "../components/Service/Service.jsx";
 import NextStep from "../components/RecyclingProcess/RecyclingProcess.jsx";
+import Reviews from "../components/Reviews/Reviews.jsx";
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Process/>
             <Service/>
             <NextStep/>
+            <Reviews/>
         </div>
     );
 };
