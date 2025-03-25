@@ -5,6 +5,11 @@
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
 
+:root {
+    --yellow: #f1d551;
+    --light-yellow: #f5dc69;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -29,4 +34,10 @@ button {
 
 [data-testid="flowbite-navbar-toggle"] span {
     display: none;
+}
+
+input:focus, textarea:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
 }
