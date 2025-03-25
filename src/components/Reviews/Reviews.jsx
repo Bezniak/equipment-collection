@@ -6,94 +6,95 @@ import {ChevronRightIcon} from "flowbite-react/icons/chevron-right-icon";
 import {FaUserCircle} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
 
-const reviews = [
-    {
-        id: 1,
-        text: "Прекрасный сервис! Приехали быстро, забрали всю технику прямо из квартиры. Очень удобно!",
-        author: "Андрей",
-        role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-        rating: 5
-    },
-    {
-        id: 2,
-        text: "Никогда не знала, что можно так легко избавиться от старого холодильника. Рекомендую всем!",
-        author: "Ольга",
-        role: "Клиент",
-        avatar: "",
-        rating: 4
-    },
-    {
-        id: 3,
-        text: "Заказывали вывоз офисной техники для нашей компании. Всё прошло быстро и без проблем. Спасибо!",
-        author: "Иван",
-        role: "Предприниматель",
-        avatar: "https://randomuser.me/api/portraits/men/3.jpg",
-        rating: 5
-    },
-    {
-        id: 4,
-        text: "Очень вежливый персонал. Всё сделали аккуратно и качественно!",
-        author: "Марина",
-        role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/women/4.jpg",
-        rating: 4
-    },
-    {
-        id: 5,
-        text: "Отличная работа, избавился от старого телевизора без хлопот!",
-        author: "Сергей",
-        role: "Клиент",
-        avatar: "",
-        rating: 5
-    },
-    {
-        id: 6,
-        text: "Спасибо за быструю работу! Всё вынесли аккуратно, мусора не осталось.",
-        author: "Екатерина",
-        role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/women/6.jpg",
-        rating: 5
-    },
-    {
-        id: 7,
-        text: "Вывезли старую стиральную машину очень оперативно. Доволен сервисом!",
-        author: "Алексей",
-        role: "Клиент",
-        avatar: "",
-        rating: 4
-    },
-    {
-        id: 8,
-        text: "Супер услуга, избавилась от ненужной бытовой техники за 10 минут! Спасибо!",
-        author: "Дарья",
-        role: "Клиент",
-        avatar: "",
-        rating: 5
-    },
-    {
-        id: 9,
-        text: "Очень удобный сервис! Не пришлось искать грузчиков, всю технику вынесли за меня.",
-        author: "Максим",
-        role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/men/9.jpg",
-        rating: 5
-    },
-    {
-        id: 10,
-        text: "Быстро и профессионально вывезли старый холодильник. Рекомендую всем!",
-        author: "Наталья",
-        role: "Клиент",
-        avatar: "https://randomuser.me/api/portraits/women/10.jpg",
-        rating: 5
-    },
-];
-
 
 const Reviews = () => {
     const {t} = useTranslation();
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
+
+    const reviews = [
+        {
+            id: 1,
+            text: t("reviewsPage.text_1"),
+            author: t("reviewsPage.clientName_1"),
+            role: t("reviewsPage.role_1"),
+            avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+            rating: 5
+        },
+        {
+            id: 2,
+            text: t("reviewsPage.text_2"),
+            author: t("reviewsPage.clientName_2"),
+            role: t("reviewsPage.role_1"),
+            avatar: "",
+            rating: 4
+        },
+        {
+            id: 3,
+            text: t("reviewsPage.text_3"),
+            author: t("reviewsPage.clientName_3"),
+            role: t("reviewsPage.role_2"),
+            avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+            rating: 5
+        },
+        {
+            id: 4,
+            text: t("reviewsPage.text_4"),
+            author: t("reviewsPage.clientName_4"),
+            role: t("reviewsPage.role_1"),
+            avatar: "https://randomuser.me/api/portraits/women/4.jpg",
+            rating: 4
+        },
+        {
+            id: 5,
+            text: t("reviewsPage.text_5"),
+            author: t("reviewsPage.clientName_5"),
+            role: t("reviewsPage.role_1"),
+            avatar: "",
+            rating: 5
+        },
+        {
+            id: 6,
+            text: t("reviewsPage.text_6"),
+            author: t("reviewsPage.clientName_6"),
+            role: t("reviewsPage.role_1"),
+            avatar: "https://randomuser.me/api/portraits/women/6.jpg",
+            rating: 5
+        },
+        {
+            id: 7,
+            text: t("reviewsPage.text_7"),
+            author: t("reviewsPage.clientName_7"),
+            role: t("reviewsPage.role_1"),
+            avatar: "",
+            rating: 4
+        },
+        {
+            id: 8,
+            text: t("reviewsPage.text_8"),
+            author: t("reviewsPage.clientName_8"),
+            role: t("reviewsPage.role_1"),
+            avatar: "",
+            rating: 5
+        },
+        {
+            id: 9,
+            text: t("reviewsPage.text_9"),
+            author: t("reviewsPage.clientName_9"),
+            role: t("reviewsPage.role_1"),
+            avatar: "https://randomuser.me/api/portraits/men/9.jpg",
+            rating: 5
+        },
+        {
+            id: 10,
+            text: t("reviewsPage.text_10"),
+            author: t("reviewsPage.clientName_10"),
+            role: t("reviewsPage.role_1"),
+            avatar: "https://randomuser.me/api/portraits/women/10.jpg",
+            rating: 5
+        },
+    ];
+
 
     useEffect(() => {
         if (sliderRef.current) {
@@ -125,7 +126,7 @@ const Reviews = () => {
                 <button onClick={prevSlide} className="p-3 bg-blue-600 rounded-full hover:bg-blue-800 transition">
                     <ChevronLeftIcon className="w-6 h-6 text-white"/>
                 </button>
-                <span>Отзывы наших клиентов</span>
+                <span>{t("reviewsPage.title")}</span>
                 <button onClick={nextSlide} className="p-3 bg-blue-600 rounded-full hover:bg-blue-800 transition">
                     <ChevronRightIcon className="w-6 h-6 text-white"/>
                 </button>
