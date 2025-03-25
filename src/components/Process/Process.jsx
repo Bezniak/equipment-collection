@@ -3,36 +3,36 @@ import {Button} from 'flowbite-react';
 import {BsDashLg} from "react-icons/bs";
 import {useTranslation} from "react-i18next";
 
-const steps = [
-    {
-        id: '01',
-        title: 'Оформление заявки',
-        description: 'Оставьте заявку на сайте или позвоните нам. Мы согласуем с вами удобное время для вывоза.',
-        icon: '📞'
-    },
-    {
-        id: '02',
-        title: 'Вывоз техники',
-        description: 'Наш курьер приедет в указанное время и заберет вашу технику бесплатно.',
-        icon: '🚛'
-    },
-    {
-        id: '03',
-        title: 'Экологичная обработка',
-        description: 'Мы разбираем технику на компоненты, отправляя пригодные для повторного использования детали на восстановление, а остальное – на безопасную переработку.',
-        icon: '♻️'
-    },
-    {
-        id: '04',
-        title: 'Ответственный подход',
-        description: 'Каждый этап утилизации проходит контроль, гарантируя, что техника не нанесет вреда окружающей среде и получит новое применение.',
-        icon: '📜'
-    }
-];
 
 const Process = () => {
     const {t} = useTranslation();
 
+    const steps = [
+        {
+            id: '01',
+            title: t("processTitle_1"),
+            description: t("processDesc_1"),
+            icon: '📞'
+        },
+        {
+            id: '02',
+            title: t("processTitle_2"),
+            description: t("processDesc_2"),
+            icon: '🚛'
+        },
+        {
+            id: '03',
+            title: t("processTitle_3"),
+            description: t("processDesc_3"),
+            icon: '♻️'
+        },
+        {
+            id: '04',
+            title: t("processTitle_4"),
+            description: t("processDesc_4"),
+            icon: '📜'
+        }
+    ];
 
     return (
         <div className="bg-gray-100 py-12 px-6">
@@ -45,10 +45,10 @@ const Process = () => {
                     {t("processTitle")}
                 </h2>
                 <p className="text-4xl font-bold text-gray-900 mt-2">
-                    {t("processDesc_1")}
+                    {t("processDesc")}
                 </p>
                 <p className="text-gray-800 mt-6">
-                    {t("processDesc_2")}
+                    {t("processDescMore")}
                 </p>
             </div>
 
@@ -67,7 +67,9 @@ const Process = () => {
             </div>
 
             <div className="mt-20 mb-5 text-center flex items-center justify-center">
-                <Button color="blue" pill size="xl" className='rounded-lg transition'>Оставить заявку</Button>
+                <Button color="blue" pill size="xl" className='rounded-lg transition'>
+                    {t("book")}
+                </Button>
             </div>
         </div>
     );
