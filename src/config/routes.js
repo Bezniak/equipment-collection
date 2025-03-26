@@ -4,4 +4,5 @@ export const ROUTES = {
     ABOUT_US: "/about",
     SERVICES: "/services",
     CONTACT: "/contact",
+    PP: "/privacyPolicy",
 }

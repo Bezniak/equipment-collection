@@ -6,6 +6,7 @@ import Service from "../components/Service/Service.jsx";
 import NextStep from "../components/RecyclingProcess/RecyclingProcess.jsx";
 import Reviews from "../components/Reviews/Reviews.jsx";
 import FAQContactForm from "../components/FAQContactForm/FAQContactForm.jsx";
+import ContactInfo from "../components/ContactInfo/ContactInfo.jsx";
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <NextStep/>
             <Reviews/>
             <FAQContactForm/>
+            <ContactInfo/>
         </div>
     );
 };

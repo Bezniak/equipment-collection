@@ -6,6 +6,7 @@ import NotFound from "./components/NotFound/NotFound.jsx";
 import AboutUs from "./components/AboutUs/AboutUs.jsx";
 import Contacts from "./components/Contacts/Contacts.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy.jsx";
 
 
 const Layout = () => {
@@ -47,6 +48,10 @@ const App = () => {
                 {
                     path: ROUTES.CONTACT,
                     element: <Contacts/>
+                },
+                {
+                    path: ROUTES.PP,
+                    element: <PrivacyPolicy/>
                 },
             ]
         },

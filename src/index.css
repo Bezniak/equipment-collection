@@ -41,3 +41,8 @@ input:focus, textarea:focus {
     box-shadow: none !important;
     border-color: transparent !important;
 }
+/* Add this to your styles */
+footer .footer-brand img {
+    width: 8rem !important; /* Force a fixed width */
+    height: auto;
+}
