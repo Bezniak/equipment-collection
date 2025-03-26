@@ -27,7 +27,7 @@ export default function HowWeWork() {
                         t("step4"),
                     ].map((text, index) => (
                         <Card key={index}
-                              className="flex items-center p-5 shadow-md rounded-lg bg-white border border-gray-200 h-full">
+                              className="flex items-center p-5 shadow-md rounded-lg !bg-white border border-gray-200 h-full">
                             <CheckCircle className="text-blue-600 w-6 h-6 mr-3 flex-shrink-0"/>
                             <p className="text-gray-700 text-md font-medium">{text}</p>
                         </Card>

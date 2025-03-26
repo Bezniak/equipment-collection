@@ -13,7 +13,7 @@ const FooterComponents = () => {
     const year = new Date().getFullYear();
 
     return (
-        <Footer container>
+        <Footer container className="!bg-white">
             <div className="w-full">
                 <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                     <div className="w-full">
@@ -25,22 +25,22 @@ const FooterComponents = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
                         <div>
-                            <FooterTitle title={t("company")}/>
+                            <FooterTitle title={t("company")} className='!text-black'/>
                             <FooterLinkGroup col>
                                 <NavLink to={ROUTES.ABOUT_US} onClick={handleClick}
-                                         className='hover:text-orange-500 transition'>
+                                         className='hover:text-orange-500 transition !text-black'>
                                     {t("about")}
                                 </NavLink>
                                 <NavLink to={ROUTES.SERVICES} onClick={handleClick}
-                                         className='hover:text-orange-500 transition'>
+                                         className='hover:text-orange-500 transition !text-black'>
                                     {t("services")}
                                 </NavLink>
                                 <NavLink to={ROUTES.CONTACT} onClick={handleClick}
-                                         className='hover:text-orange-500 transition'>
+                                         className='hover:text-orange-500 transition !text-black'>
                                     {t("contact")}
                                 </NavLink>
                                 <NavLink to={ROUTES.PP} onClick={handleClick}
-                                         className='hover:text-orange-500 transition'>
+                                         className='hover:text-orange-500 transition !text-black'>
                                     {t("privacyPolicy")}
                                 </NavLink>
                             </FooterLinkGroup>
