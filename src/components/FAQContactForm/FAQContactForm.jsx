@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useForm} from "react-hook-form";
-import {Button, TextInput, Textarea} from "flowbite-react";
+import {Button, Textarea, TextInput} from "flowbite-react";
 import {useTranslation} from "react-i18next";
 import {BsDashLg} from "react-icons/bs";
 
@@ -23,14 +23,32 @@ export default function FAQContactForm() {
     };
 
     const faqData = [
-        {question: "How can I schedule a repair?", answer: "You can contact us via the form or call our support line."},
-        {question: "What appliances do you repair?", answer: "We repair refrigerators, ovens, dishwashers, and more."},
         {
-            question: "How long does a typical repair take?",
-            answer: "Repairs usually take between 1-3 hours depending on the issue."
+            question: t("question_1"),
+            answer: t("answer_1"),
         },
-        {question: "Do you offer warranty on repairs?", answer: "Yes, we provide a 6-month warranty on all repairs."}
+        {
+            question: t("question_2"),
+            answer: t("answer_2"),
+        },
+        {
+            question: t("question_3"),
+            answer: t("answer_3"),
+        },
+        {
+            question: t("question_4"),
+            answer: t("answer_4"),
+        },
+        {
+            question: t("question_5"),
+            answer: t("answer_5"),
+        },
+        {
+            question: t("question_6"),
+            answer: t("answer_6"),
+        },
     ];
+
 
     return (
         <div
@@ -67,8 +85,8 @@ export default function FAQContactForm() {
                 </p>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                     <TextInput
-                        {...register("name", {required: "Name is required"})}
-                        placeholder="Your Name"
+                        {...register("name", {required: t("nameRequired")})}
+                        placeholder={t("name")}
                         color={errors.name ? "failure" : "gray"}
                         className='outline-none focus:outline-none'
                     />
@@ -76,28 +94,31 @@ export default function FAQContactForm() {
 
                     <TextInput
                         {...register("phone", {
-                            required: "Phone is required",
-                            pattern: {value: /^\+?\d{10,15}$/, message: "Invalid phone number"}
+                            required: t("phoneRequired"),
+                            pattern: {value: /^\+?\d{10,15}$/, message: t("invalidPhone")}
                         })}
-                        placeholder="Phone Number"
+                        placeholder={t("phone")}
                         color={errors.phone ? "failure" : "gray"}
                     />
                     {errors.phone && <span className="text-red-500 text-sm">{errors.phone.message}</span>}
 
                     <TextInput
-                        {...register("subject", {required: "Subject is required"})}
-                        placeholder="Subject"
+                        {...register("subject", {required: t("subjectRequired")})}
+                        placeholder={t("subject")}
                         color={errors.subject ? "failure" : "gray"}
                     />
                     {errors.subject && <span className="text-red-500 text-sm">{errors.subject.message}</span>}
 
                     <Textarea
-                        {...register("message", {required: "Message is required"})}
-                        placeholder="Your Message"
+                        {...register("message", {required: t("messageRequired")})}
+                        placeholder={t("message")}
+                        className='h-44'
                     />
                     {errors.message && <span className="text-red-500 text-sm">{errors.message.message}</span>}
 
-                    <Button type="submit" color="dark">Send Request</Button>
+                    <Button type="submit" color="dark" className='py-6'>
+                        {t("sendRequest")}
+                    </Button>
                 </form>
             </div>
         </div>
