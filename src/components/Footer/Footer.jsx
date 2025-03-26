@@ -1,6 +1,6 @@
 import React from 'react';
-import {Footer, FooterCopyright, FooterDivider, FooterIcon, FooterLinkGroup, FooterTitle,} from "flowbite-react";
-import {BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter} from "react-icons/bs";
+import {Footer, FooterCopyright, FooterDivider, FooterLinkGroup, FooterTitle} from "flowbite-react";
+import {FaTelegram, FaViber} from "react-icons/fa"; // Import Viber and Telegram icons
 import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
 import {ROUTES} from "../../config/routes.js";
@@ -27,16 +27,20 @@ const FooterComponents = () => {
                         <div>
                             <FooterTitle title={t("company")}/>
                             <FooterLinkGroup col>
-                                <NavLink to={ROUTES.ABOUT_US} onClick={handleClick} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.ABOUT_US} onClick={handleClick}
+                                         className='hover:text-orange-500 transition'>
                                     {t("about")}
                                 </NavLink>
-                                <NavLink to={ROUTES.SERVICES} onClick={handleClick} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.SERVICES} onClick={handleClick}
+                                         className='hover:text-orange-500 transition'>
                                     {t("services")}
                                 </NavLink>
-                                <NavLink to={ROUTES.CONTACT} onClick={handleClick} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.CONTACT} onClick={handleClick}
+                                         className='hover:text-orange-500 transition'>
                                     {t("contact")}
                                 </NavLink>
-                                <NavLink to={ROUTES.PP} onClick={handleClick} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.PP} onClick={handleClick}
+                                         className='hover:text-orange-500 transition'>
                                     {t("privacyPolicy")}
                                 </NavLink>
                             </FooterLinkGroup>
@@ -62,11 +66,23 @@ const FooterComponents = () => {
                     </div>
 
                     <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-                        <FooterIcon href="#" icon={BsFacebook}/>
-                        <FooterIcon href="#" icon={BsInstagram}/>
-                        <FooterIcon href="#" icon={BsTwitter}/>
-                        <FooterIcon href="#" icon={BsGithub}/>
-                        <FooterIcon href="#" icon={BsDribbble}/>
+                        {/*<FooterIcon href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" icon={BsFacebook} />*/}
+                        {/*<FooterIcon href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" icon={BsInstagram} />*/}
+                        {/*<FooterIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer" icon={BsTwitter} />*/}
+                        <a
+                            href="https://invite.viber.com/?g2=AQBwP5-1VY0aWzzVXK0X9A_G_6a08jLNwMQImzZYuRgZXvfziOwP4fuGuwU3C1s4"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FaViber size={28} className="hover:text-orange-500 transition"/>
+                        </a>
+                        <a
+                            href="https://t.me/ivan_bezniak"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <FaTelegram size={28} className="hover:text-orange-500 transition"/>
+                        </a>
                     </div>
                 </div>
                 <div className='mx-auto text-center pt-5'>

@@ -46,3 +46,14 @@ footer .footer-brand img {
     width: 8rem !important; /* Force a fixed width */
     height: auto;
 }
+
+.select__control {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.select__control:focus,
+.select__control--is-focused {
+    border: none !important;
+    box-shadow: none !important;
+}
