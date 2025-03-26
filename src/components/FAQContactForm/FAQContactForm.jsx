@@ -3,23 +3,31 @@ import {useForm} from "react-hook-form";
 import {Button, Textarea, TextInput} from "flowbite-react";
 import {useTranslation} from "react-i18next";
 import {BsDashLg} from "react-icons/bs";
+import dayjs from "dayjs";
 
-const TELEGRAM_BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
-const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID";
 
 export default function FAQContactForm() {
     const {t} = useTranslation();
     const [openIndex, setOpenIndex] = useState(null);
+    const [formSubmitted, setFormSubmitted] = useState(false);
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     const onSubmit = async (data) => {
-        const message = `New Inquiry:\nName: ${data.name}\nPhone: ${data.phone}\nSubject: ${data.subject}\nMessage: ${data.message}`;
+        const timestamp = dayjs().format("DD.MM.YYYY HH:mm");
+        const message = `Форма обратной связи с сайта:\n
+        Имя: ${data.name}\n
+        Телефон: ${data.phone}\n
+        Тема: ${data.subject}\n
+        Сообщение: ${data.message}\n
+        Дата и время отправки: ${timestamp}`;
 
-        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        await fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendMessage`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({chat_id: TELEGRAM_CHAT_ID, text: message})
+            body: JSON.stringify({chat_id: import.meta.env.VITE_TELEGRAM_CHAT_ID, text: message})
         });
+
+        setFormSubmitted(true);
     };
 
     const faqData = [
@@ -77,49 +85,35 @@ export default function FAQContactForm() {
                 </div>
             </div>
             <div className="bg-[var(--yellow)] p-6 h-fit py-20">
-                <h2 className="text-2xl font-bold mb-5 text-center text-black">
-                    {t("send")}
-                </h2>
-                <p className='text-lg mb-10'>
-                    {t("sendDesc")}
-                </p>
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                    <TextInput
-                        {...register("name", {required: t("nameRequired")})}
-                        placeholder={t("name")}
-                        color={errors.name ? "failure" : "gray"}
-                        className='outline-none focus:outline-none'
-                    />
-                    {errors.name && <span className="text-red-500 text-sm">{errors.name.message}</span>}
+                {formSubmitted ? (
+                    <h2 className="text-2xl font-bold text-center text-black">{t("thankYou")}</h2>
+                ) : (
+                    <>
+                        <h2 className="text-2xl font-bold mb-5 text-center text-black">{t("send")}</h2>
+                        <p className='text-lg mb-10'>{t("sendDesc")}</p>
+                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                            <TextInput {...register("name", {required: t("nameRequired")})} placeholder={t("name")}
+                                       color={errors.name ? "failure" : "gray"}/>
+                            {errors.name && <span className="text-red-500 text-sm">{errors.name.message}</span>}
 
-                    <TextInput
-                        {...register("phone", {
-                            required: t("phoneRequired"),
-                            pattern: {value: /^\+?\d{10,15}$/, message: t("invalidPhone")}
-                        })}
-                        placeholder={t("phone")}
-                        color={errors.phone ? "failure" : "gray"}
-                    />
-                    {errors.phone && <span className="text-red-500 text-sm">{errors.phone.message}</span>}
+                            <TextInput {...register("phone", {
+                                required: t("phoneRequired"),
+                                pattern: {value: /^\+?\d{10,15}$/, message: t("invalidPhone")}
+                            })} placeholder={t("phone")} color={errors.phone ? "failure" : "gray"}/>
+                            {errors.phone && <span className="text-red-500 text-sm">{errors.phone.message}</span>}
 
-                    <TextInput
-                        {...register("subject", {required: t("subjectRequired")})}
-                        placeholder={t("subject")}
-                        color={errors.subject ? "failure" : "gray"}
-                    />
-                    {errors.subject && <span className="text-red-500 text-sm">{errors.subject.message}</span>}
+                            <TextInput {...register("subject", {required: t("subjectRequired")})}
+                                       placeholder={t("subject")} color={errors.subject ? "failure" : "gray"}/>
+                            {errors.subject && <span className="text-red-500 text-sm">{errors.subject.message}</span>}
 
-                    <Textarea
-                        {...register("message", {required: t("messageRequired")})}
-                        placeholder={t("message")}
-                        className='h-44'
-                    />
-                    {errors.message && <span className="text-red-500 text-sm">{errors.message.message}</span>}
+                            <Textarea {...register("message", {required: t("messageRequired")})}
+                                      placeholder={t("message")} className='h-44'/>
+                            {errors.message && <span className="text-red-500 text-sm">{errors.message.message}</span>}
 
-                    <Button type="submit" color="dark" className='py-6'>
-                        {t("sendRequest")}
-                    </Button>
-                </form>
+                            <Button type="submit" color="dark" className='py-6'>{t("sendRequest")}</Button>
+                        </form>
+                    </>
+                )}
             </div>
         </div>
     );

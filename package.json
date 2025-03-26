@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.15",
+    "dayjs": "^1.11.13",
     "flowbite-react": "^0.11.2",
     "framer-motion": "^12.5.0",
     "i18next": "^24.2.3",
