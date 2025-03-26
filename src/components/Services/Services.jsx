@@ -107,9 +107,9 @@ const Services = () => {
             description: t("personalCareDevicesDesc")
         },
         {
-            icon: "🧊",
-            title: t("iceMakers"),
-            description: t("iceMakersDesc")
+            icon: "🍳",
+            title: t("stoves"),
+            description: t("stovesDesc")
         }
     ];
 

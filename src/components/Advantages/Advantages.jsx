@@ -1,5 +1,5 @@
 import React from "react";
-import {FaCertificate, FaClock, FaMoneyBillWave, FaRecycle, FaShieldAlt, FaTruck} from "react-icons/fa";
+import {FaBolt, FaClock, FaHandHoldingUsd, FaRecycle, FaShieldAlt, FaTruck} from "react-icons/fa";
 import {BsDashLg} from "react-icons/bs";
 import {useTranslation} from "react-i18next";
 
@@ -8,11 +8,11 @@ const Advantages = () => {
 
     const advantages = [
         {icon: FaTruck, title: "advantageTitle_1", desc: "advantageDesc_1", color: "text-yellow-400"},
+        {icon: FaHandHoldingUsd, title: "advantageTitle_4", desc: "advantageDesc_4", color: "text-purple-400"},
         {icon: FaRecycle, title: "advantageTitle_2", desc: "advantageDesc_2", color: "text-green-400"},
         {icon: FaShieldAlt, title: "advantageTitle_3", desc: "advantageDesc_3", color: "text-blue-400"},
-        {icon: FaCertificate, title: "advantageTitle_4", desc: "advantageDesc_4", color: "text-purple-400"},
-        {icon: FaClock, title: "advantageTitle_5", desc: "advantageDesc_5", color: "text-red-400"},
-        {icon: FaMoneyBillWave, title: "advantageTitle_6", desc: "advantageDesc_6", color: "text-orange-400"}
+        {icon: FaBolt, title: "advantageTitle_5", desc: "advantageDesc_5", color: "text-red-400"},
+        {icon: FaClock, title: "advantageTitle_6", desc: "advantageDesc_6", color: "text-orange-400"}
     ];
 
     return (
