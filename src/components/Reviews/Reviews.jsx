@@ -5,7 +5,7 @@ import {ChevronLeftIcon} from "flowbite-react/icons/chevron-left-icon";
 import {ChevronRightIcon} from "flowbite-react/icons/chevron-right-icon";
 import {FaUserCircle} from "react-icons/fa";
 import {useTranslation} from "react-i18next";
-
+import {motion} from "framer-motion";
 
 const Reviews = () => {
     const {t} = useTranslation();
@@ -106,19 +106,14 @@ const Reviews = () => {
 
                 sliderRef.current.scrollTo({
                     left: offsetLeft - (sliderWidth / 2) + (activeWidth / 2),
-                    behavior: "smooth"
+                    behavior: "smooth",
                 });
             }
         }
     }, [currentIndex]);
 
-    const nextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
-    };
+    const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % reviews.length);
+    const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
 
     return (
         <div className="w-full mx-auto py-20 text-center relative overflow-hidden">
@@ -133,8 +128,13 @@ const Reviews = () => {
             </h2>
             <div ref={sliderRef} className="flex gap-6 overflow-hidden scroll-smooth no-scrollbar">
                 {reviews.map((review, index) => (
-                    <div key={review.id}
-                         className={`flex-shrink-0 w-80 transition-opacity duration-300 ${index === currentIndex ? '' : 'opacity-90'}`}>
+                    <motion.div
+                        key={review.id}
+                        initial={{opacity: 0, scale: 0.8, y: 50}}
+                        animate={index === currentIndex ? {opacity: 1, scale: 1, y: 0} : {opacity: 0.5, scale: 0.9}}
+                        transition={{type: "spring", stiffness: 100, damping: 10}}
+                        className="flex-shrink-0 w-80"
+                    >
                         <Card className="p-6 shadow-lg rounded-xl h-full flex flex-col !bg-gray-900">
                             <div className="grid grid-rows-[auto_auto_1fr_auto] gap-3">
                                 <div className="flex items-center space-x-4">
@@ -149,27 +149,20 @@ const Reviews = () => {
                                         <FaUserCircle className="w-14 h-14 text-gray-400"/>
                                     )}
                                     <div>
-                                        <h3 className="text-lg text-white text-left font-semibold">
-                                            {review.author}
-                                        </h3>
-                                        <p className="text-gray-500 text-left text-sm">
-                                            {review.role}
-                                        </p>
+                                        <h3 className="text-lg text-white text-left font-semibold">{review.author}</h3>
+                                        <p className="text-gray-500 text-left text-sm">{review.role}</p>
                                     </div>
                                 </div>
-
-                                <p className="text-white overflow-hidden text-ellipsis flex-grow text-justify">
-                                    {review.text}
-                                </p>
+                                <p className="text-white overflow-hidden text-ellipsis flex-grow text-justify">{review.text}</p>
                                 <div className="flex justify-start mt-4">
                                     {[...Array(5)].map((_, i) => (
                                         <StarIcon key={i}
-                                                  className={`w-5 h-5 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}/>
+                                                  className={`w-5 h-5 ${i < review.rating ? "text-yellow-400" : "text-gray-300"}`}/>
                                     ))}
                                 </div>
                             </div>
                         </Card>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>

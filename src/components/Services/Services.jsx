@@ -4,6 +4,7 @@ import {BsDashLg} from "react-icons/bs";
 import ContactInfo from "../ContactInfo/ContactInfo.jsx";
 import {Button} from "flowbite-react";
 import ModalWindow from "../ModalWindow/ModalWindow.jsx";
+import {motion} from 'framer-motion';
 
 const Services = () => {
     const {t} = useTranslation();
@@ -146,7 +147,7 @@ const Services = () => {
             <div className='bg-gray-900 py-10 mb-20'>
                 <div className="container mx-auto p-5 mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {services.map((service, index) => (
-                        <div
+                        <motion.div
                             key={index}
                             className="bg-gray-800 rounded-lg shadow-lg flex flex-col justify-between items-center text-center p-4"
                             style={{
@@ -155,11 +156,15 @@ const Services = () => {
                                 justifyContent: "space-between",
                                 height: "auto", // Allow flexible height
                             }}
+                            initial={{opacity: 0, y: 20}}  // Initial state: hidden and slightly below
+                            whileInView={{opacity: 1, y: 0}}  // Animate to fully visible and in place
+                            transition={{duration: 0.2, delay: index * 0.2}} // Stagger the animations
+                            viewport={{once: false}} // Trigger animation only once when it comes into view
                         >
                             <span className="text-4xl md:text-5xl mb-2">{service.icon}</span>
                             <p className="text-sm mb-4 text-white text-center md:text-lg font-semibold break-words">{service.title}</p>
                             <div className="text-sm text-white flex-grow overflow-auto">{service.description}</div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

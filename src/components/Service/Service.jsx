@@ -4,6 +4,8 @@ import {ROUTES} from "../../config/routes.js";
 import {handleClick} from "../../common/helpers.js";
 import {useTranslation} from "react-i18next";
 import {BsDashLg} from "react-icons/bs";
+import {motion} from "framer-motion";
+import {useInView} from "react-intersection-observer";
 
 const Service = () => {
     const {t} = useTranslation();
@@ -43,15 +45,26 @@ const Service = () => {
                 </div>
 
                 <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {services.map((service, index) => (
-                        <div
-                            key={index}
-                            className="bg-gray-800 rounded-lg shadow-lg flex flex-col justify-center items-center text-center p-4 aspect-square"
-                        >
-                            <span className="text-4xl md:text-5xl mb-2">{service.icon}</span>
-                            <p className="text-sm md:text-lg font-semibold break-words">{service.title}</p>
-                        </div>
-                    ))}
+                    {services.map((service, index) => {
+                        const {ref, inView} = useInView({
+                            triggerOnce: false, // повторная анимация при каждом появлении
+                            threshold: 0.2, // активируется, когда 20% элемента видимо
+                        });
+
+                        return (
+                            <motion.div
+                                key={index}
+                                ref={ref}
+                                className="bg-gray-800 rounded-lg shadow-lg flex flex-col justify-center items-center text-center p-4 aspect-square"
+                                initial={{opacity: 0, y: 20}}
+                                animate={inView ? {opacity: 1, y: 0} : {opacity: 0, y: 20}}
+                                transition={{duration: 0.2, delay: index * 0.2}}
+                            >
+                                <span className="text-4xl md:text-5xl mb-2">{service.icon}</span>
+                                <p className="text-sm md:text-lg font-semibold break-words">{service.title}</p>
+                            </motion.div>
+                        );
+                    })}
                 </div>
 
                 <div className="mt-8">

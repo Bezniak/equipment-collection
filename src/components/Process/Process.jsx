@@ -3,12 +3,12 @@ import {Button} from 'flowbite-react';
 import {BsDashLg} from "react-icons/bs";
 import {useTranslation} from "react-i18next";
 import ModalWindow from "../ModalWindow/ModalWindow.jsx";
-
+import {motion} from 'framer-motion';
+import {useInView} from 'react-intersection-observer';
 
 const Process = () => {
     const {t} = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
-
 
     const steps = [
         {
@@ -56,17 +56,34 @@ const Process = () => {
             </div>
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                {steps.map((step) => (
-                    <div key={step.id} className="bg-white shadow-lg rounded-lg p-6 text-center relative">
-                        <span
-                            className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-white px-3 py-1 rounded-full font-bold">
-                            {step.id}
-                        </span>
-                        <div className="text-5xl mb-4">{step.icon}</div>
-                        <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
-                        <p className="text-gray-600 mt-2">{step.description}</p>
-                    </div>
-                ))}
+                {steps.map((step) => {
+                    const {ref, inView} = useInView({
+                        triggerOnce: false, // Ensures animation happens every time it enters the view
+                        threshold: 0.3, // Animation triggers when 30% of the element is visible
+                    });
+
+                    return (
+                        <motion.div
+                            key={step.id}
+                            ref={ref}
+                            initial={{opacity: 0, y: 90}} // Initial state: invisible and off-screen
+                            animate={{
+                                opacity: inView ? 1 : 0,
+                                y: inView ? 0 : 90
+                            }} // Animate to opacity 1 and bring into place
+                            transition={{duration: 1, ease: "easeOut"}} // Duration and easing
+                            className="bg-white shadow-lg rounded-lg p-6 text-center relative"
+                        >
+                            <span
+                                className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-white px-3 py-1 rounded-full font-bold">
+                                {step.id}
+                            </span>
+                            <div className="text-5xl mb-4">{step.icon}</div>
+                            <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
+                            <p className="text-gray-600 mt-2">{step.description}</p>
+                        </motion.div>
+                    );
+                })}
             </div>
 
             <div className="mt-20 mb-5 text-center flex items-center justify-center">

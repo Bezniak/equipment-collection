@@ -2,7 +2,7 @@ import React from 'react';
 import {Card} from 'flowbite-react';
 import {BsDashLg} from "react-icons/bs";
 import {useTranslation} from "react-i18next";
-
+import {motion} from "framer-motion";
 
 const RecyclingProcess = () => {
     const {t} = useTranslation();
@@ -43,19 +43,33 @@ const RecyclingProcess = () => {
                 <p className="text-lg text-gray-600 mb-8">
                     После того как мы заберем вашу технику, она проходит несколько этапов переработки:
                 </p>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 bg-white">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {articles.map((article, index) => (
-                        <Card key={index} className='!bg-white !border-blue-600'>
-                            <img
-                                src={article.image}
-                                alt={article.title}
-                                className="w-full h-52 object-cover"
-                            />
-                            <div className="flex flex-col flex-grow">
-                                <h3 className="text-xl font-semibold text-blue-600 mb-3">{article.title}</h3>
-                                <p className="text-black text-justify flex-grow">{article.description}</p>
-                            </div>
-                        </Card>
+                        <motion.div
+                            key={index}
+                            className="relative"
+                            initial={{opacity: 0, y: 50, rotateY: -90}}
+                            whileInView={{opacity: 1, y: 0, rotateY: 0}}
+                            transition={{
+                                duration: 0.8,
+                                delay: index * 0.2,
+                                ease: "easeOut"
+                            }}
+                            viewport={{once: false, amount: 0.3}}
+                        >
+                            <Card
+                                className="!bg-white !border-blue-600 shadow-xl overflow-hidden flex flex-col h-[380px]">
+                                <img
+                                    src={article.image}
+                                    alt={article.title}
+                                    className="w-full h-40 object-cover"
+                                />
+                                <div className="flex flex-col flex-grow p-4">
+                                    <h3 className="text-xl font-semibold text-blue-600 mb-2">{article.title}</h3>
+                                    <p className="text-black text-justify flex-grow line-clamp-3">{article.description}</p>
+                                </div>
+                            </Card>
+                        </motion.div>
                     ))}
                 </div>
             </div>
