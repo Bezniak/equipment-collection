@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from 'flowbite-react';
 import {BsDashLg} from "react-icons/bs";
 import {useTranslation} from "react-i18next";
+import ModalWindow from "../ModalWindow/ModalWindow.jsx";
 
 
 const Process = () => {
     const {t} = useTranslation();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const steps = [
         {
@@ -67,10 +70,12 @@ const Process = () => {
             </div>
 
             <div className="mt-20 mb-5 text-center flex items-center justify-center">
-                <Button color="blue" pill size="xl" className='rounded-lg transition'>
+                <Button color="blue" pill size="xl" className='rounded-lg transition'
+                        onClick={() => setIsModalOpen(true)}>
                     {t("book")}
                 </Button>
             </div>
+            {isModalOpen && <ModalWindow isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
         </div>
     );
 };

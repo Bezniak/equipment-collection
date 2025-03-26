@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {BsDashLg} from "react-icons/bs";
 import ContactInfo from "../ContactInfo/ContactInfo.jsx";
+import {Button} from "flowbite-react";
+import ModalWindow from "../ModalWindow/ModalWindow.jsx";
 
 const Services = () => {
     const {t} = useTranslation();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const services = [
         {
@@ -128,6 +132,11 @@ const Services = () => {
                     </p>
                     <h2 className="text-4xl mb-10 text-black">{t("whatWeAccept")}</h2>
                     <p className="mt-8 text-black text-lg text-left">{t("whatWeAcceptDesc")}</p>
+                    <Button onClick={() => setIsModalOpen(true)}
+                            className='bg-orange-500 text-lg py-6 px-6 mt-12 mb-5 hover:bg-orange-600'
+                    >
+                        {t("book")}
+                    </Button>
                 </div>
                 <div className="md:w-1/2 flex justify-center mt-6 md:mt-0 relative">
                     <img src="/services.webp" alt=""/>
@@ -155,6 +164,7 @@ const Services = () => {
                 </div>
             </div>
             <ContactInfo/>
+            {isModalOpen && <ModalWindow isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
         </div>
     );
 };

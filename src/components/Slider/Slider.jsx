@@ -6,8 +6,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './styles.css';
 import {useTranslation} from "react-i18next";
-import BookButton from "../BookButton/BookButton.jsx";
 import {Autoplay, Pagination} from 'swiper/modules';
+import {Button} from "flowbite-react";
+import ModalWindow from "../ModalWindow/ModalWindow.jsx";
 
 const sliderData = [
     {image: '/slider_7.jpg', titleKey: 'mainTitle_4'},
@@ -19,6 +20,7 @@ const sliderData = [
 const Slider = () => {
     const {t} = useTranslation();
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <div className="relative overflow-hidden w-screen h-screen">
@@ -60,12 +62,17 @@ const Slider = () => {
                                 animate={currentSlide === index ? {y: 0, opacity: 1} : {y: 100, opacity: 0}}
                                 transition={{duration: 1, delay: 0.3}}
                             >
-                                <BookButton title={t("book")}/>
+                                <Button onClick={() => setIsModalOpen(true)}
+                                        className='bg-orange-500 text-lg py-6 px-6 hover:bg-orange-600'
+                                >
+                                    {t("book")}
+                                </Button>
                             </motion.div>
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
+            {isModalOpen && <ModalWindow isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
         </div>
     );
 };
