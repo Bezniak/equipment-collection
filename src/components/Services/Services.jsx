@@ -110,10 +110,12 @@ const Services = () => {
     ];
 
     return (
-        <div className="py-20 bg-white">
+        <div className="bg-white">
             <div className="bg-gradient-to-r from-blue-900 to-blue-500 text-white py-16 text-center">
                 <div className="h-96 max-w-4xl mx-auto flex items-center justify-center">
-                    <h1 className="text-4xl">{t("services")}</h1>
+                    <h1 className="text-4xl">
+                        {t("services")}
+                    </h1>
                 </div>
             </div>
 
@@ -152,7 +154,6 @@ const Services = () => {
                     ))}
                 </div>
             </div>
-
             <ContactInfo/>
         </div>
     );

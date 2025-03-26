@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import {BsDashLg} from "react-icons/bs";
 import {FaCheckCircle} from "react-icons/fa";
 import HowWeWork from "./HowWeWork.jsx";
+import ContactInfo from "../ContactInfo/ContactInfo.jsx";
 
 export default function AboutUs() {
     const {t} = useTranslation();
@@ -72,6 +73,7 @@ export default function AboutUs() {
                 </div>
             </div>
             <HowWeWork/>
+            <ContactInfo/>
         </div>
     );
 }

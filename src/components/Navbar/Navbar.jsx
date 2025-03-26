@@ -31,7 +31,7 @@ const NavbarComponent = () => {
     };
 
     return (
-        <Navbar fluid className="absolute z-50 top-0 w-full bg-white opacity-100 py-3 text-white">
+        <Navbar fluid className="absolute z-50 top-0 w-full bg-white opacity-70 py-3 text-white">
             <NavbarBrand>
                 <img src="/logo.svg" className="w-16 md:w-22" alt="логотип ЭкоСборТех"/>
             </NavbarBrand>

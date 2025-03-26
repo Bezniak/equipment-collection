@@ -10,10 +10,10 @@ import BookButton from "../BookButton/BookButton.jsx";
 import {Autoplay, Pagination} from 'swiper/modules';
 
 const sliderData = [
-    {image: '/slider_1.jpg', titleKey: 'mainTitle_1'},
-    {image: '/slider_2.jpg', titleKey: 'mainTitle_2'},
-    {image: '/slider_3.jpg', titleKey: 'mainTitle_3'},
-    {image: '/slider_4.jpg', titleKey: 'mainTitle_4'},
+    {image: '/slider_7.jpg', titleKey: 'mainTitle_4'},
+    {image: '/services.webp', titleKey: 'mainTitle_2'},
+    {image: '/slider_5.webp', titleKey: 'mainTitle_1'},
+    {image: '/slider_8.jpg', titleKey: 'mainTitle_3'},
 ];
 
 const Slider = () => {
