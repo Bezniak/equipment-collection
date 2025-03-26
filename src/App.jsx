@@ -7,6 +7,7 @@ import AboutUs from "./components/AboutUs/AboutUs.jsx";
 import Contacts from "./components/Contacts/Contacts.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy.jsx";
+import Services from "./components/Services/Services.jsx";
 
 
 const Layout = () => {
@@ -43,7 +44,7 @@ const App = () => {
                 },
                 {
                     path: ROUTES.SERVICES,
-                    element: <Contacts/>
+                    element: <Services/>
                 },
                 {
                     path: ROUTES.CONTACT,

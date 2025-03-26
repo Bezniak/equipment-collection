@@ -24,7 +24,7 @@ const Process = () => {
             id: '03',
             title: t("processTitle_3"),
             description: t("processDesc_3"),
-            icon: '♻️'
+            icon: '💰'
         },
         {
             id: '04',

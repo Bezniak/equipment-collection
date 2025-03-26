@@ -4,6 +4,7 @@ import {BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter} from "react-ic
 import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
 import {ROUTES} from "../../config/routes.js";
+import {handleClick} from "../../common/helpers.js";
 
 "use client";
 
@@ -26,16 +27,16 @@ const FooterComponents = () => {
                         <div>
                             <FooterTitle title={t("company")}/>
                             <FooterLinkGroup col>
-                                <NavLink to={ROUTES.ABOUT_US} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.ABOUT_US} onClick={handleClick} className='hover:text-orange-500 transition'>
                                     {t("about")}
                                 </NavLink>
-                                <NavLink to={ROUTES.SERVICES} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.SERVICES} onClick={handleClick} className='hover:text-orange-500 transition'>
                                     {t("services")}
                                 </NavLink>
-                                <NavLink to={ROUTES.CONTACT} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.CONTACT} onClick={handleClick} className='hover:text-orange-500 transition'>
                                     {t("contact")}
                                 </NavLink>
-                                <NavLink to={ROUTES.PP} className='hover:text-orange-500 transition'>
+                                <NavLink to={ROUTES.PP} onClick={handleClick} className='hover:text-orange-500 transition'>
                                     {t("privacyPolicy")}
                                 </NavLink>
                             </FooterLinkGroup>
