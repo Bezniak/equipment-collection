@@ -20,7 +20,7 @@ const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
 const BookForm = ({additionalStyle}) => {
-    const {register, handleSubmit, watch, setValue, formState: {errors}, clearErrors} = useForm();
+    const {register, handleSubmit, watch, setValue, formState: {errors},} = useForm();
     const [selectedDate, setSelectedDate] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [bookingDetails, setBookingDetails] = useState(null);
