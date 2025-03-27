@@ -46,7 +46,7 @@ export default function FAQContactForm() {
 
     return (
         <div
-            className="grid md:grid-cols-2 gap-8 px-5 md:px-20 py-20 bg-gray-100 bg-[url(/faq-one-bg.jpg)] md:h-screen bg-center bg-no-repeat bg-cover">
+            className="grid md:grid-cols-2 gap-8 px-5 md:px-20 py-20 bg-gray-100 bg-[url(/faq-one-bg.jpg)] bg-center bg-no-repeat bg-cover">
             {/* FAQ Section */}
             <motion.div
                 ref={faqRef}
