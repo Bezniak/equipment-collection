@@ -11,14 +11,14 @@ const Service = () => {
     const {t} = useTranslation();
 
     const services = [
-        {icon: "📱", title: t("types.mobile")},
-        {icon: "🖥", title: t("types.laptop")},
-        {icon: "📺", title: t("types.tv")},
         {icon: "🔌", title: t("types.fridge")},
+        {icon: "📺", title: t("types.tv")},
+        {icon: "🖥", title: t("types.laptop")},
+        {icon: "📱", title: t("types.mobile")},
         {icon: "📠", title: t("types.office")},
-        {icon: "🎮", title: t("types.play")},
-        {icon: "📷", title: t("types.photo")},
         {icon: "🔊", title: t("types.audio")},
+        {icon: "📷", title: t("types.photo")},
+        {icon: "🎮", title: t("types.play")},
     ];
 
     return (

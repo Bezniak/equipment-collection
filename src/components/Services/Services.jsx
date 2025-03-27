@@ -23,6 +23,16 @@ const Services = () => {
             description: t("washersAndDryersDesc")
         },
         {
+            icon: "🍳",
+            title: t("stoves"),
+            description: t("stovesDesc")
+        },
+        {
+            icon: "🧊",
+            title: t("freezerChests"),
+            description: t("freezerChestsDesc")
+        },
+        {
             icon: "🍲",
             title: t("microwavesAndVacuums"),
             description: t("microwavesAndVacuumsDesc")
@@ -83,11 +93,6 @@ const Services = () => {
             description: t("waterHeatersDesc")
         },
         {
-            icon: "🧊",
-            title: t("freezerChests"),
-            description: t("freezerChestsDesc")
-        },
-        {
             icon: "🏃‍♂️",
             title: t("fitnessEquipment"),
             description: t("fitnessEquipmentDesc")
@@ -107,11 +112,6 @@ const Services = () => {
             title: t("personalCareDevices"),
             description: t("personalCareDevicesDesc")
         },
-        {
-            icon: "🍳",
-            title: t("stoves"),
-            description: t("stovesDesc")
-        }
     ];
 
     return (

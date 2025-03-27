@@ -18,7 +18,6 @@ const Contacts = () => {
             </div>
             <FAQContactForm/>
             <ContactInfo/>
-
         </div>
     );
 };

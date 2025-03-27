@@ -37,9 +37,9 @@ const NavbarComponent = () => {
             </NavbarBrand>
             <a
                 href="tel:+375297766450"
-                className="text-sm md:text-lg font-bold flex items-center gap-2 border border-orange-500 text-orange-500 p-2 rounded-lg"
+                className="text-lg md:text-lg font-bold flex items-center gap-2 border border-orange-500 text-orange-500 p-2 rounded-lg"
             >
-                <PhoneCall className="w-4 h-4 md:w-5 md:h-5 text-orange-500"/>
+                <PhoneCall className="w-5 h-5 md:w-5 md:h-5 text-orange-500"/>
                 +375 29 77 66 450
             </a>
 

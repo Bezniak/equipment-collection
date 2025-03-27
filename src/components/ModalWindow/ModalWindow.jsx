@@ -28,7 +28,7 @@ const ModalWindow = ({isOpen, setIsModalOpen}) => {
                 </h3>
                 <button type="button" data-drawer-hide="drawer-form" aria-controls="drawer-form"
                         onClick={() => setIsModalOpen(false)}
-                        className="text-blue-600 bg-transparent hover:bg-orange-500 hover:text-white rounded-lg text-sm w-10 h-10 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        className="text-blue-600 bg-transparent hover:bg-orange-500 hover:text-white rounded-lg text-sm w-10 h-10 absolute top-2.5 end-2.5 inline-flex items-center justify-center">
                     <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                          viewBox="0 0 14 14">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"

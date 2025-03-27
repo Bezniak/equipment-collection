@@ -43,7 +43,8 @@ export default function ContactInfo() {
                     </a>
                     <div className="text-center md:text-left mt-4">
                         <p className="text-lg md:text-2xl font-bold mb-2 text-yellow-400">{t("workingHour_1")}</p>
-                        <p className="text-lg md:text-2xl font-bold text-red-500">{t("workingHours_2")}</p>
+                        <p className="text-lg md:text-2xl font-bold mb-2 text-yellow-400">{t("workingHours_2")}</p>
+                        <p className="text-lg md:text-2xl font-bold text-red-500">{t("workingHours_3")}</p>
                     </div>
                 </div>
             </div>

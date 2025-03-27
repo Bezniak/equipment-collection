@@ -6,7 +6,6 @@ import {CiCalendar} from 'react-icons/ci';
 import {FiPhone} from 'react-icons/fi';
 import {MdOutlineDriveFileRenameOutline} from 'react-icons/md';
 import {useTranslation} from 'react-i18next';
-import Select from 'react-select';
 import dayjs from 'dayjs';
 import {useAuth} from "../../context/AuthContext.jsx";
 import 'dayjs/locale/ru'; // Импортируем нужную локаль
@@ -26,32 +25,8 @@ const BookForm = ({additionalStyle}) => {
     const [bookingDetails, setBookingDetails] = useState(null);
     const [dateError, setDateError] = useState(false); // New state for date error
     const {t} = useTranslation();
-    const [availableTimes, setAvailableTimes] = useState([]);
     const {locale} = useAuth();
 
-    useEffect(() => {
-        if (!selectedDate) return;
-        const selectedDay = dayjs(selectedDate).day(); // 0 - воскресенье, 1 - понедельник, ..., 6 - суббота
-        if (selectedDay === 0) {
-            setAvailableTimes([]); // No time available on Sunday
-            setValue("time", "");
-            return;
-        }
-        const startHour = 10;
-        const endHour = 18;
-        const now = dayjs();
-        const isToday = dayjs(selectedDate).isSame(now, 'day');
-        let times = [];
-
-        for (let hour = startHour; hour <= endHour; hour++) {
-            const timeString = `${hour}:00`;
-            const timeValue = dayjs(selectedDate).hour(hour).minute(0);
-            if (isToday && timeValue.isBefore(now.add(1, 'hour'))) continue; // Don't show past times for today
-            times.push({value: timeString, label: timeString});
-        }
-        setAvailableTimes(times);
-        setValue("time", ""); // Reset time when the date changes
-    }, [selectedDate]);
 
     useEffect(() => {
         const locales = {ru, en: enGB};
@@ -76,8 +51,7 @@ const BookForm = ({additionalStyle}) => {
                 `Телефон: ${data.phone}\n` +
                 `Адрес: ${data.address}\n` +
                 `Название техники: ${data.equipmentName}\n` +
-                `Дата: ${selectedDate.toLocaleDateString('ru-RU')}\n` +
-                `Время: ${data.time}\n`
+                `Дата вывоза техники: ${selectedDate.toLocaleDateString('ru-RU')}\n`
             );
 
             const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${message}`;
@@ -99,7 +73,6 @@ const BookForm = ({additionalStyle}) => {
         await sendTelegramMessage(data);
         setBookingDetails({
             name: data.name,
-            time: data.time,
             date: selectedDate.toLocaleDateString('ru-RU'),
         });
         setIsSubmitted(true);
@@ -112,7 +85,7 @@ const BookForm = ({additionalStyle}) => {
                     <h1 className='text-2xl font-bold mb-4'>
                         {t("thankYouMessageBooking.thanks")}
                     </h1>
-                    <p className='text-lg'>{t("thankYouMessageBooking.youBookOn")} {bookingDetails.time} {t("thankYouMessageBooking.onDate")} {bookingDetails.date}</p>
+                    <p className='text-lg'>{t("thankYouMessageBooking.youBookOn")} {t("thankYouMessageBooking.onDate")} {bookingDetails.date}</p>
                     <p className='text-lg mt-3'>
                         {t("thankYouMessageBooking.wait")}
                     </p>
@@ -213,32 +186,6 @@ const BookForm = ({additionalStyle}) => {
                                     </div>
                                 </div>
                                 {dateError && <p className='text-red-500 text-sm'>{t("selectDate")}</p>}
-                            </div>
-                            <div className='w-full'>
-                                <div className="border-b-1 flex flex-col items-center mb-4">
-                                    <div className="relative w-full">
-                                        <Select
-                                            options={availableTimes}
-                                            isDisabled={availableTimes.length === 0}
-                                            onChange={(option) => setValue("time", option?.value || "")}
-                                            placeholder={t("selectTime")}
-                                            className="w-full"
-                                            styles={{
-                                                control: (base) => ({
-                                                    ...base,
-                                                    border: "none",
-                                                    boxShadow: "none",
-                                                }),
-                                            }}
-                                            value={availableTimes.find((time) => time.value === watch("time")) || null}
-                                        />
-                                        <input
-                                            type="hidden"
-                                            {...register("time", {required: true})}
-                                        />
-                                    </div>
-                                </div>
-                                {errors.time && <p className="text-red-500 text-sm text-center">{t("required")}</p>}
                             </div>
                             <div className='w-full'>
                                 <button type='submit'
