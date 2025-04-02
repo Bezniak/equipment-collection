@@ -86,7 +86,7 @@ const FooterComponents = () => {
                         {/*</a>*/}
                     </div>
                 </div>
-                <div className='mx-auto text-center pt-5 font-normal'>
+                <div className='mx-auto text-center pt-8 font-normal'>
                     <p className='text-black text-sm'>
                         {t("developed_by")} &nbsp;
                         <a href="https://www.linkedin.com/in/ivan-bezniak-2634a11a0/"
@@ -94,6 +94,12 @@ const FooterComponents = () => {
                            target="_blank"
                            className='hover:text-orange-500 transition'
                         > {t("ivan_bezniak")}
+                        </a>
+                    </p>
+                    <p className='text-black text-sm'>
+                        <a href="tel:+375295210417"
+                           className="text-xl md:text-sm mt-2 block hover:text-orange-500 transition">
+                            +375 29 521 04 17
                         </a>
                     </p>
                 </div>
