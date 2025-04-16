@@ -1,0 +1,8 @@
+User-agent: *
+
+Allow: /about
+Allow: /services
+Allow: /contact
+Allow: /privacyPolicy
+
+Sitemap: https://ecosbortech.by/sitemap.xml

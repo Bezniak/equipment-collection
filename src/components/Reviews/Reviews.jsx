@@ -1,14 +1,14 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Card} from "flowbite-react";
-import {StarIcon} from "flowbite-react/icons/star-icon";
-import {ChevronLeftIcon} from "flowbite-react/icons/chevron-left-icon";
-import {ChevronRightIcon} from "flowbite-react/icons/chevron-right-icon";
-import {FaUserCircle} from "react-icons/fa";
-import {useTranslation} from "react-i18next";
-import {motion} from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { Card } from "flowbite-react";
+import { StarIcon } from "flowbite-react/icons/star-icon";
+import { ChevronLeftIcon } from "flowbite-react/icons/chevron-left-icon";
+import { ChevronRightIcon } from "flowbite-react/icons/chevron-right-icon";
+import { FaUserCircle } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const Reviews = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
 
@@ -95,7 +95,6 @@ const Reviews = () => {
         },
     ];
 
-
     useEffect(() => {
         if (sliderRef.current) {
             const activeSlide = sliderRef.current.children[currentIndex];
@@ -116,26 +115,40 @@ const Reviews = () => {
     const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
 
     return (
-        <div className="w-full mx-auto py-20 text-center relative overflow-hidden">
+        <section className="w-full mx-auto py-20 text-center relative overflow-hidden">
             <h2 className="w-full p-5 mx-auto text-3xl font-bold mb-6 flex justify-center gap-12 items-center">
-                <button onClick={prevSlide} className="p-3 bg-blue-600 rounded-full hover:bg-blue-800 transition">
-                    <ChevronLeftIcon className="w-6 h-6 text-white"/>
+                <button
+                    onClick={prevSlide}
+                    className="p-3 bg-blue-600 rounded-full hover:bg-blue-800 transition"
+                    aria-label={t("reviewsPage.previousReview")}
+                >
+                    <ChevronLeftIcon className="w-6 h-6 text-white" />
                 </button>
                 <span>{t("reviewsPage.title")}</span>
-                <button onClick={nextSlide} className="p-3 bg-blue-600 rounded-full hover:bg-blue-800 transition">
-                    <ChevronRightIcon className="w-6 h-6 text-white"/>
+                <button
+                    onClick={nextSlide}
+                    className="p-3 bg-blue-600 rounded-full hover:bg-blue-800 transition"
+                    aria-label={t("reviewsPage.nextReview")}
+                >
+                    <ChevronRightIcon className="w-6 h-6 text-white" />
                 </button>
             </h2>
+
             <div ref={sliderRef} className="flex gap-6 overflow-hidden scroll-smooth no-scrollbar">
                 {reviews.map((review, index) => (
-                    <motion.div
+                    <motion.article
                         key={review.id}
-                        initial={{opacity: 0, scale: 0.8, y: 50}}
-                        animate={index === currentIndex ? {opacity: 1, scale: 1, y: 0} : {opacity: 0.5, scale: 0.9}}
-                        transition={{type: "spring", stiffness: 100, damping: 10}}
+                        initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                        animate={index === currentIndex ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0.5, scale: 0.9 }}
+                        transition={{ type: "spring", stiffness: 100, damping: 10 }}
                         className="flex-shrink-0 w-80"
+                        aria-labelledby={`review-${review.id}`}
                     >
-                        <Card className="p-6 shadow-lg rounded-xl h-full flex flex-col !bg-gray-900">
+                        <Card
+                            className="p-6 shadow-lg rounded-xl h-full flex flex-col !bg-gray-900"
+                            role="region"
+                            aria-labelledby={`review-${review.id}`}
+                        >
                             <div className="grid grid-rows-[auto_auto_1fr_auto] gap-3">
                                 <div className="flex items-center space-x-4">
                                     {review.avatar ? (
@@ -144,28 +157,37 @@ const Reviews = () => {
                                             alt={review.author}
                                             className="w-14 h-14 rounded-full"
                                             onError={(e) => (e.target.style.display = "none")}
+                                            aria-hidden="true"
                                         />
                                     ) : (
-                                        <FaUserCircle className="w-14 h-14 text-gray-400"/>
+                                        <FaUserCircle className="w-14 h-14 text-gray-400" aria-hidden="true" />
                                     )}
                                     <div>
-                                        <h3 className="text-lg text-white text-left font-semibold">{review.author}</h3>
+                                        <h3
+                                            id={`review-${review.id}`}
+                                            className="text-lg text-white text-left font-semibold"
+                                        >
+                                            {review.author}
+                                        </h3>
                                         <p className="text-gray-500 text-left text-sm">{review.role}</p>
                                     </div>
                                 </div>
                                 <p className="text-white overflow-hidden text-ellipsis flex-grow text-justify">{review.text}</p>
                                 <div className="flex justify-start mt-4">
                                     {[...Array(5)].map((_, i) => (
-                                        <StarIcon key={i}
-                                                  className={`w-5 h-5 ${i < review.rating ? "text-yellow-400" : "text-gray-300"}`}/>
+                                        <StarIcon
+                                            key={i}
+                                            className={`w-5 h-5 ${i < review.rating ? "text-yellow-400" : "text-gray-300"}`}
+                                            aria-hidden="true"
+                                        />
                                     ))}
                                 </div>
                             </div>
                         </Card>
-                    </motion.div>
+                    </motion.article>
                 ))}
             </div>
-        </div>
+        </section>
     );
 };
 

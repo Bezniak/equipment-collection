@@ -8,6 +8,7 @@ import Contacts from "./components/Contacts/Contacts.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy.jsx";
 import Services from "./components/Services/Services.jsx";
+import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton.jsx";
 
 
 const Layout = () => {
@@ -16,6 +17,7 @@ const Layout = () => {
             <Navbar/>
             <div className="flex-grow-1">
                 <Outlet/>
+                <ScrollToTopButton />
             </div>
             <Footer/>
         </div>

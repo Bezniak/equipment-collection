@@ -244,6 +244,23 @@
   "bookButton": "Submit Booking",
   "equipmentName": "Equipment Name: refrigerator, washing machine",
   "lawAddress": "Legal address of JSC \"Brest-VTI\" Brest, Svetlaya St. 1, 224020",
-  "companyName": "EcoSborTech"
-
+  "companyName": "EcoSborTech",
+  "meta": {
+    "home": {
+      "title": "Appliance Recycling and Pickup in Grodno — EcoSborTech",
+      "description": "Recycle your unwanted appliances with ease — free home pickup, cash reward per kilogram, and eco-friendly processing. EcoSborTech in Grodno offers a convenient way to dispose of old electronics without harming the environment!"
+    },
+    "aboutUs": {
+      "title": "About EcoSborTech — Appliance Disposal with Care for the Environment",
+      "description": "EcoSborTech is a trusted company specializing in the pickup and recycling of household appliances. We serve individuals and businesses with free collection, fair evaluation, and an environmentally responsible approach. Submit a request in just 1 minute — we’ll take care of the rest!"
+    },
+    "services": {
+      "title": "What We Recycle — Full List of Accepted Appliances at EcoSborTech",
+      "description": "We recycle refrigerators, washing machines, laptops, air conditioners, phones, TVs, and more. EcoSborTech guarantees safe and eco-compliant recycling. Find out what you can hand over — quick, easy, and profitable!"
+    },
+    "contacts": {
+      "title": "Contact EcoSborTech — Get in Touch or Schedule a Pickup",
+      "description": "Have questions? Contact EcoSborTech — we’ll explain how to recycle your appliances, accept your pickup request, and help with the evaluation. Fast response, friendly service, and we operate throughout Grodno and the region."
+    }
+  }
 }

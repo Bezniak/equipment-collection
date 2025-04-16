@@ -38,13 +38,13 @@ const Process = () => {
     ];
 
     return (
-        <div className="bg-gray-100 py-12 px-6">
+        <section className="bg-gray-100 py-12 px-6" aria-labelledby="process-title">
             <div className="max-w-6xl mx-auto text-center">
                 <p className="mb-4 text-blue-600 uppercase tracking-widest flex items-center gap-3">
                     <BsDashLg className="size-6 md:size-8"/>
                     {t("ourProcess")}
                 </p>
-                <h2 className="text-blue-600 font-semibold text-2xl mb-5">
+                <h2 id="process-title" className="text-blue-600 font-semibold text-2xl mb-5">
                     {t("processTitle")}
                 </h2>
                 <p className="text-4xl font-bold text-gray-900 mt-2">
@@ -63,7 +63,7 @@ const Process = () => {
                     });
 
                     return (
-                        <motion.div
+                        <motion.article
                             key={step.id}
                             ref={ref}
                             initial={{opacity: 0, y: 90}} // Initial state: invisible and off-screen
@@ -73,27 +73,30 @@ const Process = () => {
                             }} // Animate to opacity 1 and bring into place
                             transition={{duration: 1, ease: "easeOut"}} // Duration and easing
                             className="bg-white shadow-lg rounded-lg p-6 text-center relative"
+                            aria-labelledby={`step-${step.id}-title`}
+                            role="region"
                         >
                             <span
                                 className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-white px-3 py-1 rounded-full font-bold">
                                 {step.id}
                             </span>
                             <div className="text-5xl mb-4">{step.icon}</div>
-                            <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
+                            <h3 id={`step-${step.id}-title`}
+                                className="text-lg font-semibold text-gray-900">{step.title}</h3>
                             <p className="text-gray-600 mt-2">{step.description}</p>
-                        </motion.div>
+                        </motion.article>
                     );
                 })}
             </div>
 
             <div className="mt-20 mb-5 text-center flex items-center justify-center">
                 <Button color="blue" pill size="xl" className='rounded-lg transition'
-                        onClick={() => setIsModalOpen(true)}>
+                        onClick={() => setIsModalOpen(true)} aria-label={t("book")}>
                     {t("book")}
                 </Button>
             </div>
             {isModalOpen && <ModalWindow isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>}
-        </div>
+        </section>
     );
 };
 
