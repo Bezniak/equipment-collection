@@ -36,11 +36,11 @@ const NavbarComponent = () => {
                 <img src="/logo.svg" className="w-16 md:w-22" alt="логотип ЭкоСборТех"/>
             </NavbarBrand>
             <a
-                href="tel:+375297766450"
+                href="tel:+375297621847"
                 className="text-lg md:text-lg font-bold flex items-center gap-2 border border-orange-500 text-orange-500 p-2 rounded-lg"
             >
                 <PhoneCall className="w-5 h-5 md:w-5 md:h-5 text-orange-500"/>
-                +375 29 77 66 450
+                +375 29 762 18 47
             </a>
 
             <div className="flex md:order-2 items-center space-x-4">

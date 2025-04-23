@@ -1,6 +1,6 @@
 import React from 'react';
 import { Footer, FooterCopyright, FooterDivider, FooterLinkGroup, FooterTitle } from 'flowbite-react';
-import { FaViber } from 'react-icons/fa'; // Import Viber icon
+import {FaTelegramPlane, FaViber} from 'react-icons/fa'; // Import Viber icon
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../config/routes.js';
@@ -89,14 +89,22 @@ const FooterComponents = () => {
                     </div>
 
                     {/* Social Media Icons */}
-                    <div className="mt-4 flex justify-center sm:mt-0 sm:justify-end">
+                    <div className="mt-4 flex justify-center gap-6 sm:mt-0 sm:justify-end">
                         <a
-                            href="viber://chat?number=%2B375297766450"
+                            href="viber://chat?number=%2B375297621847"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-orange-500 transition"
                         >
                             <FaViber size={28} />
+                        </a>
+                        <a
+                            href="https://t.me/ecosbortech"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-orange-500 transition"
+                        >
+                            <FaTelegramPlane size={28} />
                         </a>
 
                     </div>

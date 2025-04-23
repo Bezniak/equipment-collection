@@ -14,9 +14,11 @@ import ru from 'date-fns/locale/ru';
 import enGB from 'date-fns/locale/en-GB';
 import {FaMapMarkerAlt} from "react-icons/fa";
 import {BiSolidFridge} from "react-icons/bi";
+import * as emailjs from "emailjs-com";
 
 const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
 
 const BookForm = ({additionalStyle}) => {
     const {register, handleSubmit, watch, setValue, formState: {errors},} = useForm();
@@ -24,9 +26,9 @@ const BookForm = ({additionalStyle}) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [bookingDetails, setBookingDetails] = useState(null);
     const [dateError, setDateError] = useState(false); // New state for date error
+    const [isSubmitting, setIsSubmitting] = useState(false); // Track submission status
     const {t} = useTranslation();
     const {locale} = useAuth();
-
 
     useEffect(() => {
         const locales = {ru, en: enGB};
@@ -45,13 +47,13 @@ const BookForm = ({additionalStyle}) => {
             }
 
             const message = encodeURIComponent(
-                `Бронирование с сайта!\n` +
-                `Запись оформлена ${formattedDate} в ${formattedTime}\n` +
-                `Имя: ${data.name}\n` +
-                `Телефон: ${data.phone}\n` +
-                `Адрес: ${data.address}\n` +
-                `Название техники: ${data.equipmentName}\n` +
-                `Дата вывоза техники: ${selectedDate.toLocaleDateString('ru-RU')}\n`
+                `📦 Новая заявка с сайта ЭкоСборТех!\n\n` +
+                `🕒 Запись оформлена: ${formattedDate} в ${formattedTime}\n\n` +
+                `👤 Имя: ${data.name}\n` +
+                `📞 Телефон: ${data.phone}\n` +
+                `📍 Адрес: ${data.address}\n` +
+                `🔧 Техника: ${data.equipmentName}\n` +
+                `📅 Дата вывоза: ${selectedDate.toLocaleDateString('ru-RU')}\n`
             );
 
             const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${message}`;
@@ -67,15 +69,39 @@ const BookForm = ({additionalStyle}) => {
 
     const onSubmit = async (data) => {
         if (!selectedDate) {
-            setDateError(true); // Set date error state to true
+            alert("Выберите дату вывоза");
             return;
         }
-        await sendTelegramMessage(data);
-        setBookingDetails({
+
+        setIsSubmitting(true); // Disable submit button
+
+        const templateParams = {
+            region: 'Гродно',
             name: data.name,
-            date: selectedDate.toLocaleDateString('ru-RU'),
-        });
-        setIsSubmitted(true);
+            phone: data.phone,
+            address: data.address,
+            techlist: data.equipmentName,
+            date: selectedDate.toLocaleDateString('ru-RU'), // например: 24.04.2025
+        };
+
+        try {
+            await emailjs.send(
+                'service_d4qph9d',
+                'template_c835pw6',
+                templateParams,
+                'pJNwiGyYIc4d54q8M'
+            );
+
+            await sendTelegramMessage(data);
+
+            setBookingDetails(templateParams);
+            setIsSubmitted(true); // ⬅️ важно: иначе не покажется сообщение "Спасибо"
+        } catch (error) {
+            console.log('FAILED...', error);
+            alert("Ошибка при отправке формы");
+        } finally {
+            setIsSubmitting(false); // Re-enable submit button after form submission
+        }
     };
 
     return (
@@ -152,7 +178,6 @@ const BookForm = ({additionalStyle}) => {
                                 {errors.address && <p className='text-red-500 text-sm'>{t("required")}</p>}
                             </div>
 
-
                             <div className='flex flex-col items-center w-full'>
                                 <div className='w-full border-b-1 mb-4'>
                                     <div className='w-full flex flex-row items-center justify-between'>
@@ -188,8 +213,10 @@ const BookForm = ({additionalStyle}) => {
                                 {dateError && <p className='text-red-500 text-sm'>{t("selectDate")}</p>}
                             </div>
                             <div className='w-full'>
-                                <button type='submit'
-                                        className='tracking-widest w-full py-3 px-3 bg-blue-600 text-white uppercase hover:bg-orange-500 transition rounded-lg'
+                                <button
+                                    type='submit'
+                                    className='tracking-widest w-full py-3 px-3 bg-blue-600 text-white uppercase hover:bg-orange-500 transition rounded-lg'
+                                    disabled={isSubmitting} // Disable button while submitting
                                 >
                                     {t("bookButton")}
                                 </button>

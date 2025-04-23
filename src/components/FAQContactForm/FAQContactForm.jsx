@@ -19,12 +19,13 @@ export default function FAQContactForm() {
 
     const onSubmit = async (data) => {
         const timestamp = dayjs().format("DD.MM.YYYY HH:mm");
-        const message = `Форма обратной связи с сайта:\n
-        Имя: ${data.name}\n
-        Телефон: ${data.phone}\n
-        Тема: ${data.subject}\n
-        Сообщение: ${data.message}\n
-        Дата и время отправки: ${timestamp}`;
+        const message = `📩 Форма обратной связи с сайта\n
+👤 Имя: ${data.name}
+📞 Телефон: ${data.phone}
+📝 Тема: ${data.subject}
+💬 Сообщение: ${data.message}
+🕒 Дата и время отправки: ${timestamp}`;
+
 
         await fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendMessage`, {
             method: "POST",

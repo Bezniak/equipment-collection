@@ -39,12 +39,12 @@ export default function ContactInfo() {
 
                 <article className="flex flex-col items-center md:items-start gap-4">
                     <a
-                        href="tel:+375297766450"
+                        href="tel:+375297621847"
                         className="text-xl md:text-2xl font-bold flex items-center gap-2 border border-yellow-400 p-4 rounded-lg"
-                        aria-label="Phone number: +375 29 77 66 450"
+                        aria-label="Phone number: +375 29 762 18 47"
                     >
                         <PhoneCall className="w-6 md:w-8 h-6 md:h-8 text-yellow-400" aria-hidden="true" />
-                        +375 29 77 66 450
+                        +375 29 762 18 47
                     </a>
                     <div className="text-center md:text-left mt-4" aria-label="Working hours">
                         <p className="text-lg md:text-2xl font-bold mb-2 text-yellow-400">{t("workingHour_1")}</p>
