@@ -14,7 +14,6 @@ import ru from 'date-fns/locale/ru';
 import enGB from 'date-fns/locale/en-GB';
 import {FaMapMarkerAlt} from "react-icons/fa";
 import {BiSolidFridge} from "react-icons/bi";
-import * as emailjs from "emailjs-com";
 
 const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
@@ -24,7 +23,6 @@ const BookForm = ({additionalStyle}) => {
     const {register, handleSubmit, watch, setValue, formState: {errors},} = useForm();
     const [selectedDate, setSelectedDate] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [bookingDetails, setBookingDetails] = useState(null);
     const [dateError, setDateError] = useState(false); // New state for date error
     const [isSubmitting, setIsSubmitting] = useState(false); // Track submission status
     const {t} = useTranslation();
@@ -73,36 +71,36 @@ const BookForm = ({additionalStyle}) => {
             return;
         }
 
-        setIsSubmitting(true); // Disable submit button
-
-        const templateParams = {
-            region: 'Гродно',
-            name: data.name,
-            phone: data.phone,
-            address: data.address,
-            techlist: data.equipmentName,
-            date: selectedDate.toLocaleDateString('ru-RU'), // например: 24.04.2025
-        };
+        setIsSubmitting(true);
 
         try {
-            await emailjs.send(
-                'service_d4qph9d',
-                'template_c835pw6',
-                templateParams,
-                'pJNwiGyYIc4d54q8M'
-            );
-
+            setIsSubmitted(true);
+            // Отправка данных в Telegram (если нужно)
             await sendTelegramMessage(data);
 
-            setBookingDetails(templateParams);
-            setIsSubmitted(true); // ⬅️ важно: иначе не покажется сообщение "Спасибо"
+            // Отправка данных на сервер через PHP
+            const phpResponse = await fetch('/send-form.php', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    name: data.name,
+                    phone: data.phone,
+                    address: data.address,
+                    equipmentName: data.equipmentName,
+                    date: selectedDate.toLocaleDateString('ru-RU')
+                })
+            });
+
+            if (!phpResponse.ok) {
+                throw new Error('Ошибка при отправке на сервер');
+            }
         } catch (error) {
             console.log('FAILED...', error);
             alert("Ошибка при отправке формы");
         } finally {
-            setIsSubmitting(false); // Re-enable submit button after form submission
+            setIsSubmitting(false); // Re-enable button after submission completes
         }
     };
+
 
     return (
         <div className='md:min-h-[75vh] xs:h-fit flex flex-col items-center justify-center gap-8 p-5'>
@@ -111,7 +109,6 @@ const BookForm = ({additionalStyle}) => {
                     <h1 className='text-2xl font-bold mb-4'>
                         {t("thankYouMessageBooking.thanks")}
                     </h1>
-                    <p className='text-lg'>{t("thankYouMessageBooking.youBookOn")} {t("thankYouMessageBooking.onDate")} {bookingDetails.date}</p>
                     <p className='text-lg mt-3'>
                         {t("thankYouMessageBooking.wait")}
                     </p>
