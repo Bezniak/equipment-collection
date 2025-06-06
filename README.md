@@ -1,41 +1,59 @@
-🌿 EcoSborTech — Веб-сайт по сбору и переработке техники
-EcoSborTech — это современный и экологически ориентированный сайт, разработанный для компании, занимающейся приёмом и
-утилизацией бытовой и электронной техники в Гродно.
+🌿 https://ecosbortech.by/ — Website for Electronics Collection and Recycling
+EcoSborTech is a modern, eco-friendly website developed for a company that specializes in the collection and recycling of household and electronic equipment in Grodno.
 
-🔍 Цель проекта
-Создать интуитивно понятную, адаптивную и информативную платформу, которая поможет людям и организациям:
+🔍 Project Goal
+To create an intuitive, responsive, and informative platform that helps individuals and organizations:
 
-Узнать, как утилизировать технику безопасно и экологично;
+Learn how to dispose of electronics safely and in an environmentally responsible way
 
-Связаться с компанией для вывоза оборудования;
+Get in touch with the company to arrange pickup of equipment
 
-Ознакомиться с правилами приёма и списком принимаемой техники;
+Review the rules for equipment acceptance and see the list of accepted items
 
-Быстро найти ответы на частые вопросы.
+Quickly find answers to frequently asked questions
 
-⚙️ Технологии проекта
-React — для создания отзывчивого интерфейса
+⚙️ Technologies Used
 
-Tailwind CSS — для быстрого и адаптивного дизайна
+React — for building a responsive user interface
 
-Vite — для быстрой сборки и разработки
+Tailwind CSS — for fast and adaptive design
 
-i18next — для мультиязычной поддержки
+Vite — for rapid development and bundling
 
-Framer Motion и Swiper — для анимаций и слайдеров
+i18next — for multilingual support
 
-React Hook Form — для валидации форм
+Framer Motion and Swiper — for animations and sliders
 
-💼 Что реализовано
-Главная страница с ключевой информацией
+React Hook Form — for form validation
 
-Страницы "О нас", "Услуги" и "Контакты"
+💼 Features Implemented
 
-Интерактивная форма заявки
+Home page with key information
 
-Часто задаваемые вопросы (FAQ)
+“About Us,” “Services,” and “Contacts” pages
 
-Удобная мобильная версия
+Interactive service request form
 
-🖥 Проект направлен на повышение экологической осознанности и упрощение процесса утилизации ненужной техники для
-населения и бизнеса.
+Frequently Asked Questions (FAQ) section
+
+Fully optimized mobile version
+
+🖥 This project aims to promote environmental awareness and make the disposal of unwanted electronics easier for both individuals and businesses.
+
+SEO & Accessibility:
+
+Semantic HTML markup
+
+Open Graph and meta tags
+
+Favicon and manifest.json
+
+Adaptive design for all devices
+
+Fast page load with Vite and resource optimization
+
+🖥 This project is aimed at promoting environmental awareness and simplifying the recycling process for both individuals and businesses.
+
+Developer: Ivan Beznyak
+Telegram: @ivan_bezniak
+Email: ivan.bezniak@gmail.com
