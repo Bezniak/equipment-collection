@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Главная страница -->
+    <url>
+        <loc>https://ecosbortech.by/</loc>
+        <lastmod>2025-08-26</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- О компании -->
+    <url>
+        <loc>https://ecosbortech.by/about</loc>
+        <lastmod>2025-08-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Услуги -->
+    <url>
+        <loc>https://ecosbortech.by/services</loc>
+        <lastmod>2025-08-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Контакты -->
+    <url>
+        <loc>https://ecosbortech.by/contact</loc>
+        <lastmod>2025-08-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Политика конфиденциальности -->
+    <url>
+        <loc>https://ecosbortech.by/privacyPolicy</loc>
+        <lastmod>2025-08-26</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+</urlset>
